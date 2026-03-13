@@ -1,0 +1,32 @@
+[package]
+name = "tauri-vue-starter"
+description = "基于 Tauri2、Vue3 的快速开发模板"
+authors = ["集成显卡/0604hx"]
+license = "MIT"
+repository = "https://github.com/0604hx/tauri-vue-starter"
+edition = "2024"
+rust-version = "1.93.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.3.1", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+tauri = { version = "2.10.2", features = [] }
+
+[profile.dev]
+incremental = true  # Compile your binary in smaller steps.
+
+[profile.release]
+codegen-units = 1   # 减少代码生成单元以提高优化效果
+lto = true          # 链接时优化（Link Time Optimization）
+opt-level = "s"     # Prioritizes small binary size. Use `3` if you prefer speed,z to optimize for size, and s for something in-between.
+panic = "abort"     # 遇到 panic 直接终止，不包含回溯信息
+strip = true        # 去除符号表和调试信息
