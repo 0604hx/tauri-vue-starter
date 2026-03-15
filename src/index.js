@@ -56,7 +56,10 @@ const appWrapper = {
     }
 }
 
-const app = createApp(appWrapper)
+// 如果创建简单的页面（比如无需 vue-router），可以使用 appWrapper，然后在 App.vue 中写具体的功能
+// const app = createApp(appWrapper)
+const app = createApp(App)
+
 
 app.config.globalProperties.filesize = window.filesize = (mem, fixed=0, split="")=>{
     if(!mem)    return ""
