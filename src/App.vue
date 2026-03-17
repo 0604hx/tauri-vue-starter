@@ -1,5 +1,5 @@
 <template>
-    <n-config-provider :locale="zhCN" :theme>
+    <n-config-provider :locale="zhCN" :theme :theme-overrides="themeOverrides">
         <n-message-provider>
             <n-dialog-provider>
                 <n-notification-provider>
@@ -22,6 +22,7 @@
 
 <script setup>
     import { zhCN, darkTheme } from 'naive-ui'
+    import tinycolor from "tinycolor2"
     import { getCurrentWindow } from '@tauri-apps/api/window'
 
     import Footer from "@W/footer.vue"
@@ -34,6 +35,20 @@
      * 从 store 中获取 theme 配置
      */
     const theme = computed(()=> store.dark ? darkTheme : null)
+    const themeOverrides = computed(()=>{
+        const c = tinycolor(store.color)
+        // const hover = c.brighten().toString()
+        const hover = c.monochromatic()[1].toHexString()
+        console.log(hover, c.saturate().toString())
+        return {
+            common: {
+                primaryColor: store.color,
+                primaryColorHover: hover,
+                primaryColorSuppl: hover,
+                primaryColorPressed: c.saturate().toString()
+            }
+        }
+    })
 
     /**
      * 修改窗口标题为页面标题，以保持一致性

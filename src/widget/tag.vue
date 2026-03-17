@@ -1,5 +1,5 @@
 <template>
-    <n-tag :bordered :type :size style="margin: 0px 4px 0px 4px;">
+    <n-tag :bordered :type :size>
         <slot></slot>
     </n-tag>
 </template>

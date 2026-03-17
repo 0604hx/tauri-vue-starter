@@ -27,6 +27,7 @@ export default defineConfig({
             "_VERSION_"         : JSON.stringify(version),
             "_AUTHOR_"          : JSON.stringify(pkg.author),
             "APP_TITLE"         : JSON.stringify(pkg.cnName),
+            "APP_DEPENDENCIES"  : JSON.stringify(pkg.devDependencies)
         }
     },
     html:{
